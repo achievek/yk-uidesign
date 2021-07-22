@@ -3,17 +3,18 @@ import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuitem'
 import SubMenu from './components/Menu/Submenu'
 import Transition from './components/Transition/transition'
-import Icon from './components/Icon/icon'
+import Input from './components/Input/input'
 import { library} from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 library.add(fas)
+
 function App() {
   const [show,setShow]=useState(false)
   return (
     <div className="App">
       <header className="App-header">
-        <Icon icon="coffee" theme="danger" size='10x'  />
+        <Input icon='search' style={{width:'300px'}}/>
         <Menu defaultIndex={'0'} onSelect={(index)=>alert(index)} mode='vertical' defaultOpenSubmenus={['2']}>
           <MenuItem>cool link</MenuItem>
           <MenuItem  disabled>cool link2</MenuItem>
