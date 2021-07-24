@@ -6,13 +6,36 @@ import Transition from './components/Transition/transition'
 import Input from './components/Input/input'
 import { library} from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import axios from 'axios'
 library.add(fas)
 
 function App() {
   const [show,setShow]=useState(false)
+
+  const handleFIleChange =(e:React.ChangeEvent<HTMLInputElement>) =>{
+    const files=e.target.files
+    if(files){
+      const uploadedFile = files[0]
+      const formData =new FormData()
+      formData.append(uploadedFile.name,uploadedFile)
+      axios.post('http://jsonplaceholder.typicode.com/posts',formData,{
+        headers:{
+          'Content-Type':'multipart/form-data'
+        }
+      }).then(
+        resp=>{
+          console.log(resp);
+          
+        }
+      )
+    }
+  }
   return (
     <div className="App">
+      <div className="upload">
+        <input type="file" name="myFile" onChange ={handleFIleChange} />
+      </div>
       <header className="App-header">
         <Input icon='search' style={{width:'300px'}}/>
         <Menu defaultIndex={'0'} onSelect={(index)=>alert(index)} mode='vertical' defaultOpenSubmenus={['2']}>
