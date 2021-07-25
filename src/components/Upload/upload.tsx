@@ -104,6 +104,8 @@ export const Upload:FC<UploadProps>=(props) =>{
       }
     }).then(resp=>{
       console.log(resp);
+      alert('上传成功')
+      updateFileList(_file,{response:resp.data,status:'success'})
       if(onSuccess){
         onSuccess(resp.data,file)
       }
@@ -111,6 +113,7 @@ export const Upload:FC<UploadProps>=(props) =>{
         onChange(file)
       }
     }).catch(err =>{
+      updateFileList(_file,{error:err,status:'error'})
       console.log(err);
       if(onError){
         onError(err,file)
@@ -129,3 +132,6 @@ export const Upload:FC<UploadProps>=(props) =>{
     </div>
   )
 }
+
+
+export default Upload

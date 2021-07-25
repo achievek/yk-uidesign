@@ -102,7 +102,7 @@ export const AutoComplete: FC<AutoCompleteProps>=(props) =>{
   }
   return(
     <div className="yk-auto-complete" ref={componetRef}>
-      <Input value={inputvalue} onChange={handleChange} onKeyDown={handleKeyDown} />
+      <Input value={inputvalue} onChange={handleChange} onKeyDown={handleKeyDown} {...restProps}/>
       {loading&&<ul><div className="suggstions-loading-icon"><Icon icon="spinner" spin/></div></ul>}
       {(suggestions.length>0)&&generateDropdown()}
     </div>
